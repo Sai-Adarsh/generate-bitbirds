@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Generate NFTs</title>
+    <meta name="description" content="Login - Register Template">
+    <meta name="author" content="Lorenzo Angelino aka MrLolok">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        body {
+            background-color: #303641;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container-display">
+        <div id="title">
+            <b>Generate NFTs</b>
+        </div>
+        <form action="/hashImage" method = "POST">
+            <div class="input">
+                <div class="input-addon">
+                    <i style="color:Orange;" class="material-icons">lock</i>
+                </div>
+                <input id="offset" name="offset" placeholder="Enter offset message" type="text" required class="validate" autocomplete="off">
+            </div>
+            <br />
+            <button onclick="myFunction()" id="submit">Copy & hash</button>
+        </form>
+        {% for hist in hists %}
+            <img id="container-img" src="{{url_for('static', filename=hist)}}">
+        {% endfor %}
+        </div>
+    </div>
+</body>
+<script>
+    function myFunction() {
+        /* Get the text field */
+        var copyText = document.getElementById("offset");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+        /* Copy the text inside the text field */
+        navigator.clipboard.writeText(copyText.value);
+    }
+</script>
+</html>
